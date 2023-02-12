@@ -20,7 +20,27 @@ students = [
         {'first_name' : 'Mark', 'last_name' : 'Guillen'},
         {'first_name' : 'KB', 'last_name' : 'Tonel'}
     ]
+
 def iterateDictionary(some_list):
     for i in some_list:
-        print("first name -- {first_name}, last name -- {last_name}".format(first_name=i['first_name'], last_name=i['last_name']))
+        return f'first name --- {i["first_name"]}, last name --- {i["last_name"]}'
 iterateDictionary(students)
+
+def iterateDictionary2(key_name, some_list):
+    keys = []
+    for i in some_list:
+        keys.append(f'{i[key_name]}')
+    return keys
+print(iterateDictionary2("first_name", students))
+
+dojo = {
+    'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
+    'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
+}
+
+def printInfo(some_dict):
+    result = []
+    for key in some_dict:
+        result.append(f"{len(some_dict[key])} {key} {some_dict[key]}")
+    return result
+print(printInfo(dojo))
