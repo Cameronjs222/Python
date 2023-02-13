@@ -29,7 +29,7 @@ iterateDictionary(students)
 def iterateDictionary2(key_name, some_list):
     keys = []
     for i in some_list:
-        keys.append(f'{i[key_name]}')
+        keys.append(i[key_name])
     return keys
 print(iterateDictionary2("first_name", students))
 
