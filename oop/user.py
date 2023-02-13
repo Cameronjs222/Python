@@ -23,5 +23,5 @@ class User:
         return self
 cameron = User("Cameron", "Shaffer", "cameron@email.com", 27)
 alex = User("Alex", "Schaffer", "Alex@email.com", 25)
-cameron.display_info().enroll().spend_points(50)
-alex.display_info().enroll().spend_points(80)
+cameron.enroll().spend_points(50).display_info()
+alex.enroll().spend_points(80).display_info()
