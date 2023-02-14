@@ -1,1 +1,2 @@
-print("this is a test")
+e = 3.5
+print(type(e))
