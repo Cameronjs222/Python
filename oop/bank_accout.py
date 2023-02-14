@@ -6,20 +6,21 @@ class BankAccount:
     def deposit(self, amount):
         self.money += amount
         self.balance = f"${str(self.money)}"
+        return self
     def withdraw(self, amount):
         self.money -= amount
         self.balance = f"${str(self.money)}"
+        return self
     def display_account_info(self):
-        print(f"Balnce: {self.balance}")
+        display = f"Balance: {self.balance}"
+        print(display)
+        return display
     def yield_interest(self):
         if (self.int_rate > 0):
             self.money += float(self.money) * self.int_rate
             self.balance = f"${str(self.money)}"
+            return self
 user1=BankAccount(5, 500)
-user1.deposit(500)
-print(user1.balance)
-user1.withdraw(200)
-print(user1.balance)
-user1.display_account_info()
-user1.yield_interest()
-user1.display_account_info()
+user2=BankAccount(5, 10000)
+user1.deposit(100).deposit(500).deposit(50).withdraw(70).yield_interest().display_account_info()
+user2.deposit(1000).deposit(5000).withdraw(500).withdraw(100).withdraw(400).withdraw(1000).yield_interest().display_account_info()
