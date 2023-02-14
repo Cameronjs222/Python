@@ -20,7 +20,12 @@ students = [
         {'first_name' : 'Mark', 'last_name' : 'Guillen'},
         {'first_name' : 'KB', 'last_name' : 'Tonel'}
     ]
-def iterateDictionary(some_list):
+# def iterateDictionary(some_list):
+#     for i in some_list:
+#         print("first name -- {first_name}, last name -- {last_name}".format(first_name=i['first_name'], last_name=i['last_name']))
+# iterateDictionary(students)
+
+def iterateDictionary2(some_list):
     for i in some_list:
-        print("first name -- {first_name}, last name -- {last_name}".format(first_name=i['first_name'], last_name=i['last_name']))
-iterateDictionary(students)
+        print(f"first name -- {i['first_name']}, last name -- {i['last_name']}")
+iterateDictionary2(students)
