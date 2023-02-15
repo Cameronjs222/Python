@@ -40,9 +40,14 @@ class User:
         self.account.balance = f"${str(self.account.money)}"
         return self
     def display_account_info(self):
-        display = f"Balance: {self.account.balance}"
+        display = f"{self.first_name} {self.last_name}'s balance: {self.account.balance}"
         print(display)
         return display
+    def yield_interest(self):
+        if (self.account.int_rate > 0):
+            self.account.money += float(self.account.money) * self.account.int_rate
+            self.account.balance = f"${str(self.account.money)}"
+            return self
 user1 = User('Cameron', 'Shaffer', 'Cameron@email.com', 27, 5, 500)
 user1.account.deposit(800).yield_interest().display_account_info()
 user1.account.withdraw(200).yield_interest().display_account_info()
