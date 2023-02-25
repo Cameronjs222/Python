@@ -11,3 +11,12 @@ body {
 .square {
     height: 200px; width: 200px;margin: 10px; border-radius: 10px;
 }
+#welcome {
+    width: 100vw;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: black; */
