@@ -1,0 +1,13 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+#nav {
+    margin: auto;
+}
+.box {
+    display: flex;justify-content: center; align-items: center; height: auto; width: 100vw; margin: auto; flex-wrap: wrap; margin: 2% 0 0 0;
+}
+.square {
+    height: 200px; width: 200px;margin: 10px; border-radius: 10px;
+}
