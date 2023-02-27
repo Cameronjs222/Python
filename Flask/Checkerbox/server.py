@@ -7,7 +7,7 @@ def route1():
     return box(2, 2, "black", "rgb(237,237,237)")
 @app.route("/<int:num>")
 def route2(num):    
-    return box(int(num/2) + (num % 2 > 0), 2, "black", "rgb(237,237,237)")
+    return box(int(num/2) + (num % 2 > 0), int(num/2) + (num % 2 > 0), "black", "rgb(237,237,237)")
 @app.route("/<int:num1>/<int:num2>")
 def route3(num1, num2):
     return box(int(num1/2) + (num1 % 2 > 0), int(num2/2) + (num2 % 2 > 0), "black", "rgb(237,237,237)",)
