@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+h1 {
+    margin-bottom: 50px;
+}
 body {
     display: flex;
     flex-direction: column;
