@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 users = [
    {'first_name' : 'Michael', 'last_name' : 'Choi'},
@@ -8,6 +8,6 @@ users = [
 ]
 @app.route("/")
 def route1():
-   return "hello world"
+   return render_template("index.html", students = users)
 if __name__ == "__main__":
     app.run(debug=True)

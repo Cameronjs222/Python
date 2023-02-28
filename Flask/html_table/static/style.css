@@ -1,0 +1,11 @@
+* {
+    font-size: larger;
+}
+body {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+tr th, tr td {
+    border: 2px solid black;
+}
