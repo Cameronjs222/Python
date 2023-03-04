@@ -8,13 +8,17 @@ def survey():
 def process():
     print("Got Post Info")
     print(request.form)
-    session['user'] = request.form['name']
-    session['location'] = request.form['location']
-    session['language'] = request.form['language']
-    session['comment'] = request.form['comment']
+    session['Name'] = request.form['name']
+    session['Location'] = request.form['location']
+    session['Language'] = request.form['language']
+    session['Comments'] = request.form['comment']
     return redirect('/display')
 @app.route('/display')
 def display():
-    return session['user']
+    return render_template('display.html', Name = 'Name')
+@app.route('/delete')
+def delete():
+    session.clear()
+    return redirect('/')
 if __name__ == "__main__":
     app.run(debug=True)

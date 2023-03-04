@@ -10,29 +10,34 @@
 </head>
 <body>
     <form action="/process" method="post">
-        <div class="col-xxl-3 col-5 mx-auto mt-5 container_1 px-3 py-2 rounded-5">
+        <div class="col-xxl-3 col-5 mx-auto mt-5 purple px-3 py-2 rounded-5">
             <div class="input-group-lg d-flex justify-content-around my-3">
                 <div class='col-4'>
-                <span class="input-group-text label text-bg-dark" id="name" for="name">Your Name</span>
-                <label for="location" class="input-group-text label text-bg-dark ">Dojo Location</label>
-                <label for="language" class="input-group-text label text-bg-dark">Favorite language</label>
-                <span class="input-group-text label text-bg-dark">Comments</span>
+                    <span class="input-group-text label text-light purple" id="name" for="name">Your Name</span>
+                    <label for="location" class="input-group-text label text-light purple ">Dojo Location</label>
+                    <label for="language" class="input-group-text label text-light purple">Favorite language</label>
+                    <span class="input-group-text label text-light purple">Comments</span>
                 </div>
                 <div class='col'>
                     <input type="text" class="form-control dark" id="Name" name="name" aria-describedby="basic-addon3">
                     <select class="form-select dark" id="location" name="location">
                         <option value="California">California</option>
-                        <option value="flordia">flordia</option>
+                        <option value="Seattle">Seattle</option>
+                        <option value="Chicago">Chicago</option>
+                        <option value="Online">Online</option>
                     </select>
                     <select class="form-select dark" id="language" name="language">
-                        <option value="python">python</option>
-                        <option value="javascript">javascript</option>
+                        <option value="Python">Python</option>
+                        <option value="Javascript">Javascript</option>
+                        <option value="Java">Java</option>
+                        <option value="C++">C++</option>
+                        <option value="C++">Other (Please specify in the Comments)</option>
                     </select>
-                    <textarea class="form-control dark" aria-label="With textarea" rows="1" name="comment"></textarea>
+                    <textarea class="form-control dark" aria-label="With textarea" rows="3" name="comment"></textarea>
                 </div>
             </div>
                 <div class='text-end'>
-                <button class="btn text-bg-dark">submit</button>
+                <button class="btn text-light purple">submit</button>
                 </div>
         </div>
     </form>
