@@ -16,6 +16,10 @@ def create_user():
         "lname" : request.form["lname"],
         "mail" : request.form["mail"]
     }
+    # for i in data:
+    #     if data[i] == "":
+    #         data.pop(data[i])
+    # print(data)
     User.save(data)
     return redirect('/users')
 if __name__ == "__main__":
