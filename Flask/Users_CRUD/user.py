@@ -22,10 +22,11 @@ class User:
         query = "SELECT * FROM users WHERE id = %(id)s;"
         info = {'id':data}
         results = connectToMySQL('users_schema').query_db(query, info)
-        users = []
-        for user in results:
-            users.append(cls(user))
-        return users
+        # users = []
+        # for user in results:
+        #     users.append(cls(user))
+        print(results)
+        return cls(results[0])
     @classmethod
     def create_one(cls, data):
         query = "INSERT INTO users (first_name, last_name, email) VALUES (%(first_name)s, %(last_name)s, %(email)s)"
@@ -38,5 +39,4 @@ class User:
     @classmethod
     def update_one(cls,data):
         query = "UPDATE users SET first_name=%(first_name)s,last_name=%(last_name)s, email=%(email)s WHERE id = %(id)s"
-        info = {'id' : data}
-        return connectToMySQL('users_schema').query_db(query, info)
+        return connectToMySQL('users_schema').query_db(query, data)

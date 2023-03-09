@@ -8,13 +8,14 @@
 </head>
 <body>
     <h1>welcome!</h1>
-    <form action="/users/update/{{user.id}}" method="post">
+    <h2>{{id}}</h2>
+    <form action="/users/update/{{id}}/first_name/last_name/Email" method="post">
         <label for="first_name">First name:</label>
-        <input type="text" name="first_name" required id="">
+        <input type="text" name="first_name" required placeholder="{{first_name}}" id="">
         <label for="last_name">Last name:</label>
-        <input type="text" name="last_name" required id="">
+        <input type="text" name="last_name" placeholder="{{last_name}}" required id="">
         <label for="email">Email:</label>
-        <input type="text" name="email" id="">
+        <input type="text" name="email" placeholder="{{email}}" id="">
         <button>Submit</button>
     </form>
 </body>
