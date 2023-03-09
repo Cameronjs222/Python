@@ -12,7 +12,7 @@ class User:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users;"
-        results = connectToMySQL('users_schema').query_db(query)
+        results = connectToMySQL("users_schema").query_db(query)
         users = []
         for user in results:
             users.append(cls(user))

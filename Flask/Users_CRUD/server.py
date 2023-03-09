@@ -32,8 +32,7 @@ def edit():
     return render_template('edit.html')
 @app.route('/users/user/<int:user_id>')
 def user(user_id):
-    results = User.get_one
-    (user_id)
+    results = User.get_one(user_id)
     return render_template('edit.html', user = results)
 if __name__ == "__main__":
     app.run(debug=True)
