@@ -15,8 +15,7 @@
             <thead>
                 <th class="text-light col-2">First name</th>
                 <th class="text-light col-2">Last name</th>
-                <th class="text-light col-2">Email</th>
-                <th class="text-light col-2">dojo</th>
+                <th class="text-light col-2">age</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -26,16 +25,7 @@
                 <tr>
                     <td class="text-light col-2">{{users[i].first_name}}</td>
                     <td class="text-light col-2">{{users[i].last_name}}</td>
-                    <td class="text-light col-2">{{users[i].email}}</td>
-                    <td class="text-light col-1">
-                        <a class="text-light" href="/users/user/{{users[i].id}}">Show</a>
-                    </td>
-                    <td class="text-light col-1">
-                        <a class="text-light" href="/users/update/edit/{{users[i].id}}/{{users[i].first_name}}/{{users[i].last_name}}/{{users[i].email}}">update</a>
-                    </td>
-                    <td class="text-light col-1">
-                        <a class="text-light" href="/users/delete/{{ users[i].id }}">Delete</a>
-                    </t>
+                    <td class="text-light col-2">{{users[i].age}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -43,8 +33,6 @@
         <a href="/">
             <button class="bg-info text-light border-info">Home</button>
         </a>
-    </div>
-    <div class="col-3">
     </div>
 </body>
 </html>
