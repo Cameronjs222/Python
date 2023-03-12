@@ -11,6 +11,13 @@
     <h1 class="text-center">welcome!</h1>
     <div class="col-2 text-bg-info px-1 mx-auto text-light">
         <form action="/users/create" method="post">
+            <label for="dojo">select dojo</label>
+            <select name="dojo" id="dojo_list">
+                <option value="">Select dojo</option>
+                {% for dojo in dojos %}
+                    <option value="{{dojo.id}}">{{dojo.name}}</option>
+                {% endfor %}
+            </select>
             <label class="col-12" for="first_name">First name:</label>
             <input class="col-12" type="text" name="first_name" required id="">
             <label class="col-12" for="last_name">Last name:</label>

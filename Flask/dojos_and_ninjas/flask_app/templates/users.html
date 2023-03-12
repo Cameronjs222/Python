@@ -9,32 +9,33 @@
 
 </head>
 <body>
-    <div id="users_table" class="mx-auto justify-content-center text-center col-6">
+    <div id="users_table" class="mx-auto justify-content-center text-center col-4">
         <h1>Users</h1>
         <table class="mx-auto text-center table bg-info">
             <thead>
                 <th class="text-light col-2">First name</th>
                 <th class="text-light col-2">Last name</th>
                 <th class="text-light col-2">Email</th>
+                <th class="text-light col-2">dojo</th>
                 <th></th>
                 <th></th>
                 <th></th>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for i in range(0, users|length) %}
                 <tr>
-                    <td class="text-light col-2">{{user.first_name}}</td>
-                    <td class="text-light col-2">{{user.last_name}}</td>
-                    <td class="text-light col-2">{{user.email}}</td>
-                    <td class="text-light col-2">
-                        <a class="text-light" href="/users/user/{{user.id}}">Show</a>
+                    <td class="text-light col-2">{{users[i].first_name}}</td>
+                    <td class="text-light col-2">{{users[i].last_name}}</td>
+                    <td class="text-light col-2">{{users[i].email}}</td>
+                    <td class="text-light col-1">
+                        <a class="text-light" href="/users/user/{{users[i].id}}">Show</a>
                     </td>
-                    <td class="text-light col-2">
-                        <a class="text-light" href="/users/update/edit/{{user.id}}/{{user.first_name}}/{{user.last_name}}/{{user.email}}">update</a>
+                    <td class="text-light col-1">
+                        <a class="text-light" href="/users/update/edit/{{users[i].id}}/{{users[i].first_name}}/{{users[i].last_name}}/{{users[i].email}}">update</a>
                     </td>
-                    <td>
-                        <a class="text-light" href="/users/delete/{{ user.id }}">Delete</a>
-                    </td class="text-light col-2">
+                    <td class="text-light col-1">
+                        <a class="text-light" href="/users/delete/{{ users[i].id }}">Delete</a>
+                    </t>
                 </tr>
                 {% endfor %}
             </tbody>
