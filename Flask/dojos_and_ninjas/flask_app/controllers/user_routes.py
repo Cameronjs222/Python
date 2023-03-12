@@ -29,3 +29,37 @@ def users():
 def dojo_users(dojo_id):
     results = User.get_all(dojo_id)
     return render_template("users.html", users=results)
+
+# updates
+
+@app.route('/users/update/<int:user_id>/<string:first_name>/<string:last_name>/<string:age>', methods=['get', 'post'])
+def update_one(user_id, first_name, last_name, age):
+    print(request.method)
+    if request.method == 'GET':
+        data = {
+        'first_name':first_name,
+        'last_name':last_name,
+        'age': age,
+        'id': user_id
+    }
+    elif request.method == 'POST':
+        data = {
+        'first_name':request.form['first_name'],
+        'last_name':request.form['last_name'],
+        'age':request.form['age'],
+        'id': user_id
+    }
+    print(request.method)
+    User.update_one(data)
+    return redirect('/dojos')
+@app.route('/users/update/edit/<int:user_id>/<string:first_name>/<string:last_name>/<string:age>', methods=['get', 'post'])
+def edit(user_id,first_name,last_name,age):
+    return render_template('edit.html', id=user_id,first_name=first_name,last_name=last_name,age=age)
+
+# delete
+
+@app.route('/users/delete/<int:user_id>')
+def delete_one(user_id):
+    print(user_id)
+    User.delete_one(user_id)
+    return redirect("/dojos")
