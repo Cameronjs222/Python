@@ -25,6 +25,21 @@
                 {% endfor %}
             </tbody>
         </table>
+        <h2>New Dojo</h2>
+        <table class="mx-auto text-center table bg-info">
+            <thead>
+                <th class="text-light">Enter new dojo</th>
+            </thead>
+            <tbody>
+                <td class="text-light col-12">
+                    <form action="/new-dojo" method="post">
+                        <!-- <label for="new_dojo" class="col-12">test</label> -->
+                        <input name="new_dojo" type="text" class="col-12">
+                        <button class="text-light bg-info border-info mt-2 mb-1">Submit</button>
+                    </form>
+                </td>
+            </tbody>
+        </table>
         <a href="/">
             <button class="bg-info text-light border-info">Home</button>
         </a>
