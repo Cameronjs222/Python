@@ -10,11 +10,11 @@ def form():
     return render_template("index.html", dojos=dojos, dojos_len=dojos_len)
 @app.route('/users/create', methods=["POST"])
 def create_one():
-    print(request.form)
+    print(request.form['age'])
     data = {
     'first_name':request.form['first_name'],
     'last_name':request.form['last_name'],
-    'email':request.form['email'],
+    'age':request.form['age'],
     'dojos_id': request.form['dojo']
     }
     User.create_one(data)
