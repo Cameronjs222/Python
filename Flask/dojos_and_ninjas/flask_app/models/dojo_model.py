@@ -16,3 +16,8 @@ class Dojo:
             dojos.append(cls(dojo))
         print(dojos[0].name)
         return dojos
+    @classmethod
+    def create_new(cls, data):
+        query = "INSERT INTO dojos (name) VALUES (%(name)s)"
+        info = {'name':data}
+        return connectToMySQL(cls.my_db).query_db(query, info)

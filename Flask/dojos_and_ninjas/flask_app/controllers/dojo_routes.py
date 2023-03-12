@@ -9,3 +9,7 @@ def display_dojos():
     results = Dojo.get_all()
     return render_template('dojos.html', dojos=results)
 
+@app.route("/new-dojo", methods = ['POST'])
+def add_dojo():
+    Dojo.create_new(request.form['new_dojo'])
+    return redirect('/dojos')
