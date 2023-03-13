@@ -28,7 +28,7 @@ def users():
 @app.route('/users/<int:dojo_id>')
 def dojo_users(dojo_id):
     results = User.get_all(dojo_id)
-    return render_template("users.html", users=results)
+    return render_template("users.html", users=results, dojo = dojo_id)
 
 # updates
 

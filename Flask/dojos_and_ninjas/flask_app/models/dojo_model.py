@@ -14,10 +14,21 @@ class Dojo:
         dojos = []
         for dojo in results:
             dojos.append(cls(dojo))
-        print(dojos[0].name)
         return dojos
     @classmethod
     def create_new(cls, data):
         query = "INSERT INTO dojos (name) VALUES (%(name)s)"
         info = {'name':data}
+        return connectToMySQL(cls.my_db).query_db(query, info)
+    @classmethod
+    def delete_dojo(cls, data):
+        query = """
+        DELETE FROM dojos WHERE id = %(id)s;
+        """
+        data = {'id': data}
+        return connectToMySQL(cls.my_db).query_db(query, data)
+    @classmethod
+    def delete_users(cls, data):
+        query = "DELETE FROM users where (dojos_id=%(id)s)"
+        info = {'id' : data}
         return connectToMySQL(cls.my_db).query_db(query, info)
