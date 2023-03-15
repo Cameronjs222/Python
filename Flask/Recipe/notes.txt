@@ -1,0 +1,4 @@
+Steps to creating the recipe apps:
+    1) build out user routes (create, read, update, delete)
+    2) create login in templates
+    3) build model to operate relevent template
