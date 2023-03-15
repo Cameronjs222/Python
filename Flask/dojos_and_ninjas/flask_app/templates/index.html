@@ -9,6 +9,15 @@
 </head>
 <body   >
     <h1 class="text-center">welcome!</h1>
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}
+            <div class="col-2 bg-info">                            <!-- check if there are any messages -->
+                {% for message in messages %}            <!-- loop through the messages -->
+                    <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
     <div class="col-2 text-bg-info px-1 mx-auto text-light">
         <form action="/users/create" method="post">
             <label for="dojo">select dojo</label><br/>
@@ -23,7 +32,9 @@
             <label class="col-12" for="last_name">Last name:</label>
             <input class="col-12" type="text" name="last_name" required id="">
             <label class="col-12" for="age">age:</label>
-            <input class="col-12" type="text" name="age" required id="">
+            <input class="col-12" type="number" name="age" required id="">
+            <label class="col-12" for="email">Email</label>
+            <input class="col-12" type="text" name="email" id="">
             <div class="text-center">
                 <button class="text-center bg-info text-light border-info my-3">Submit</button>
             </div>

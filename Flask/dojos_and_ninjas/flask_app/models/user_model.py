@@ -1,11 +1,14 @@
 from flask_app.config.mySQLconnection import connectToMySQL
-
+from flask import flash
+import re
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 class User:
     my_db = "dojos_and_ninjas"
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
         self.last_name = data['last_name']
+        self.email = data['email']
         self.age = data['age']
         self.created_at=  data['created_at']
         self.updated_at = data['updated_at']
@@ -48,3 +51,26 @@ class User:
         query = "DELETE FROM users where (id=%(id)s)"
         info = {'id' : data}
         return connectToMySQL(cls.my_db).query_db(query, info)
+    
+    # validation
+    @staticmethod
+    def validation(data):
+        is_valid = True
+        # added or so that users will only get one error message if both first and last name are under 3 characters
+        if len(data['first_name']) < 3 or len(data['last_name']) < 3:
+            flash('Name must be at least three characters long.')
+            is_valid = False
+        if  str(data['age']):
+            flash('age must be a number')
+            is_valid
+        if int(data['age']) > 120:
+            flash('Age entered is to large.')
+            is_valid = False
+        if int(data['age']) < 12:
+            flash('Users must be at least 12 years old before registering.')
+            is_valid = False
+        if not EMAIL_REGEX.match(data['email']):
+            flash('Invalid user email')
+        return is_valid
+
+

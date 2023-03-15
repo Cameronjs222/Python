@@ -11,13 +11,9 @@ def form():
 @app.route('/users/create', methods=["POST"])
 def create_one():
     print(request.form['age'])
-    data = {
-    'first_name':request.form['first_name'],
-    'last_name':request.form['last_name'],
-    'age':request.form['age'],
-    'dojos_id': request.form['dojo']
-    }
-    User.create_one(data)
+    if not User.validation(request.form):
+        return redirect('/')
+    User.create_one(request.form)
     return redirect('/dojos')
 @app.route('/users')
 def users():
