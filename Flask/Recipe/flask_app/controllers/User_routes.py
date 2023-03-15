@@ -6,3 +6,5 @@ from flask_app.models.User_model import User
 @app.route('/')
 def login_reg():
     return render_template('index.html')
+@app.route('/user/create' methods=['POST'])
+def create_new_user():
