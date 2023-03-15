@@ -13,3 +13,6 @@ def create_new_user():
     new_user = User.create_user(request.form) #creates variable for new user that will be saved in session
     session['new_user'] = new_user
     return redirect('/post')
+@app.route('/post')
+def show_all_post():
+    return render_template('recipes.html')
