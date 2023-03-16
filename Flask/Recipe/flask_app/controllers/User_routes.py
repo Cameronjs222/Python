@@ -25,7 +25,7 @@ def validate_login():
         'email':request.form['email']
     }
     returning_user = User.check_email(email_data)
-    session['user_id'] = returning_user
+    session['user_id'] = returning_user.id
     return redirect('/post')
 
 @app.route('/post')

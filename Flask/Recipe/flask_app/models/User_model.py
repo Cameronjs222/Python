@@ -17,16 +17,6 @@ class User:
         self.password = form_data['password']
         self.created_at = form_data['created_at']
         self.updated_at = form_data['updated_at']
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'first_name': self.first_name,
-            'last_name': self.last_name,
-            'email': self.email,
-            'password': self.password,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at
-        }
     @classmethod
     def create_user(cls, form_data):
         query = """
@@ -69,7 +59,7 @@ class User:
         if results:
             user = cls(results[0])
             print('user object',user, user.id)
-            return cls.to_dict(user)
+            return user
         else:
             return False
     @staticmethod
@@ -91,13 +81,13 @@ class User:
         is_valid = True
         data= { "email": form_data["email"]}
         valid_user = User.check_email(data)
-        print("valid user", valid_user)
+        print("valid user")
         if not valid_user:
             flash("Invalid credentials")
             is_valid = False
         if valid_user:
-            if not bcrypt.check_password_hash(valid_user['password'], form_data['password']):
-                print('user password', valid_user['password'])
+            if not bcrypt.check_password_hash(valid_user.password, form_data['password']):
+                print('user password', valid_user.password)
                 flash("Invalid credentials")
                 is_valid = False
         return is_valid
