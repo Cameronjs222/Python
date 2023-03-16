@@ -1,0 +1,1 @@
+# there are going to be many repipes per user. When pulling recpies from my sql you will be creating a python class using that information and include a creator value and define that using a dictionary with in the same for loop. See assosiating users in classes.

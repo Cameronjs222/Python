@@ -24,5 +24,13 @@
         <button type="submit">Submit</button>
     </form>
     </div>
-</body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="col-2 bg-info">
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}</body>
 </html>
