@@ -8,12 +8,27 @@ def login_reg():
     return render_template('index.html')
 @app.route('/user/create', methods=['POST'])
 def create_new_user():
-    if not User.validation(request.form): #checks if the entered information passes all of the validation specifications.
+    print(request.form)
+    if not User.validation_registration(request.form): #checks if the entered information passes all of the validation specifications.
         return redirect('/')
     new_user = User.create_user(request.form) #creates variable for new user that will be saved in session
     print(new_user)
-    session['new_user'] = new_user
+    session['user_id'] = new_user
+    print(session['user_id'])
     return redirect('/post')
+@app.route('/user/login', methods=['POST'])
+def validate_login():
+    if not User.validation_login(request.form):
+        return redirect('/')
+    print("validated")
+    email_data={
+        'email':request.form['email']
+    }
+    returning_user = User.check_email(email_data)
+    session['user_id'] = returning_user
+    return redirect('/post')
+
 @app.route('/post')
 def show_all_post():
-    return render_template('recipes.html')
+    user_id=session['user_id']
+    return render_template('recipes.html', id= user_id)
