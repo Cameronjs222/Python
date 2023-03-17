@@ -8,37 +8,59 @@
     <title>Recipes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <div class="justify-content-evenly bg-dark d-flex">
-        <div class="col-1 px-2 bg-danger border-dark">
-            <H2>Register</H2>
-            <form action="/user/create" method="post">
-                <label for="first_name">First name:</label>
-                <input class="col-12" name="first_name" type="text">
-                <label for="last_name">Last name:</label>
-                <input class="col-12" name="last_name" type="text">
-                <label for="email">Email</label>
-                <input class="col-12" name="email" type="text">
-                <label for="password">Password</label>
-                <input class="col-12" name="password" type="password">
-                <label for="password_confirmation">Confirm your password</label>
-                <input class="col-12" name="password_confirmation" type="password">
-                <button type="submit">Submit</button>
-            </form>
+    <nav class="d-flex justify-content-between row bg-gradient">
+        <div class="col-6 text-light"><h1>Welcome to recipes.com</h1></div>
+        <div class="col-md-3 col-lg-2 align-self-center mt-2">
+            <button onclick="login()">login</button>
+            <button onclick="register()">Register</button>
         </div>
-        <div class="col-1 px-2 bg-info border-dark">
-            <h2>Login</h2>
-            <form action="/user/login" method="post">
-                <label for="email">User Email:</label>
-                <input name="email" type="text">
-                <label for="password">User Password</label>
-                <input name="password" type="password">
-                <button>submit</button>
-            </form>
+    </nav>
+    <form action="/user/create" method="post">
+        <div class="bg-dark-subtle d-flex justify-content-end box">
+            <div class="me-3 d-flex flex-column bg-info register">
+                <div class="d-flex justify-content-end my-2 register">
+                    <label class="me-2 register text-light" for="first_name">first name</label>
+                    <input class="register" name="first_name" type="text">
+                </div>
+                <div class="d-flex justify-content-end my-2">
+                    <label class="me-2 register text-light" for="last_name">last name</label>
+                    <input class="register" name="last_name" type="text">
+                </div>
+                <div class="d-flex justify-content-end my-2">
+                    <label class="me-2 register text-light" for="email">email</label>
+                    <input class="register" name="email" type="text">
+                </div>
+                <div class="d-flex justify-content-end my-2">
+                    <label class="me-2 register text-light" for="password">password</label>
+                    <input class="register" name="password" type="password">
+                </div>
+                <div class="d-flex justify-content-end my-2">
+                    <label class="me-2 register text-light" for="password_confirmation">confirm password</label>
+                    <input class="register" name="password_confirmation" type="password">
+                </div>
+                <button class="register">register</button>
+            </div>
         </div>
-    </div>
+    </form>
+    <form action="/user/login" method="post">
+        <div class="bg-dark-subtle d-flex justify-content-end box text-start">
+            <div class="me-3 d-flex flex-column bg-info login">
+                <div class="d-flex justify-content-end my-2">
+                    <label class="me-2 login text-light" for="email">email</label>
+                    <input class="login" name="email" type="text">
+                </div>
+                <div class="d-flex justify-content-end my-2">
+                    <label class="me-2 login text-light" for="password">password</label>
+                    <input class="login" name="password" type="password">
+                </div>
+                <button class="login">Login</button>
+            </div>
+        </div>
+    </form>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <div class="col-2 bg-info">
@@ -48,6 +70,8 @@
     </div>
     {% endif %}
     {% endwith %}
+
+    <script src="../static/script.js"></script>
 </body>
 
 </html>

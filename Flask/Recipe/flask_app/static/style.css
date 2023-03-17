@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(28,79,91);
+}
+.register, .login {
+    display: none;
+}
+.box {
+    height: 0px;
+}
+nav {
+    display: flex;
+    justify-content: space-center;
+    flex
+}
