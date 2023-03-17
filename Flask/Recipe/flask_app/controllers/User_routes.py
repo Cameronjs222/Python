@@ -28,7 +28,7 @@ def validate_login():
     session['user_id'] = returning_user.id
     return redirect('/post')
 
-@app.route('/post')
-def show_all_post():
-    user_id=session['user_id']
-    return render_template('recipes.html', id= user_id)
+@app.route('/logout')
+def logout():
+    session.clear()
+    

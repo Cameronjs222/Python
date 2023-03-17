@@ -37,17 +37,35 @@ class User:
         query = """
         SELECT * FROM users WHERE users.id = %(id)s
         """
-        results = connectToMySQL(cls.my_db).query_db(query, form_data)
-        pass
+        data ={'id':form_data}
+        results = connectToMySQL(cls.my_db).query_db(query,data)
+        return cls(results[0])
     @classmethod
-    def get_all(cls, form_data):
-        pass #should use join left in order to merge all the data from the recpies table with the users table in order to display all users and their recipes.
+    def get_all(cls):
+        query='''
+            SELECT * FROM users
+        '''
+        results= connectToMySQL(cls.my_db).query_db(query)
+
+        print(results)
+        if results:
+            users=[]
+            for user in results:
+                one_user= cls(user)
+                users.append(one_user)
+                
+            return users
+        else:
+            return None    
     @classmethod
     def update_user_info(cls, form_data):
-        pass
+        query = "UPDATE users SET first_name=%(first_name)s,last_name=%(last_name)s, email=%(email)s WHERE id = %(id)s"
+        return connectToMySQL(cls.my_db).query_db(query, form_data)
     @classmethod
-    def delete_user(cls,form_data):
-        pass
+    def delete_one(cls, form_data):
+        query = "DELETE FROM users where (id=%(id)s)"
+        data = {'id' : form_data}
+        return connectToMySQL(cls.my_db).query_db(query, data)
     @classmethod
     def check_email(cls, form_data):
         query= '''
