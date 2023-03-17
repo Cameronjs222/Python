@@ -20,8 +20,8 @@
         </div>
     </nav>
     <form action="/user/create" method="post">
-        <div class="bg-dark-subtle d-flex justify-content-end box">
-            <div class="me-3 d-flex flex-column bg-info register">
+        <div class="d-flex justify-content-end box">
+            <div class="me-3 d-flex flex-column register">
                 <div class="d-flex justify-content-end my-2 register">
                     <label class="me-2 register text-light" for="first_name">first name</label>
                     <input class="register" name="first_name" type="text">
@@ -43,24 +43,22 @@
                     <input class="register" name="password_confirmation" type="password">
                 </div>
                 <button class="register">register</button>
+            </form>
             </div>
-        </div>
-    </form>
-    <form action="/user/login" method="post">
-        <div class="bg-dark-subtle d-flex justify-content-end box text-start">
-            <div class="me-3 d-flex flex-column bg-info login">
-                <div class="d-flex justify-content-end my-2">
-                    <label class="me-2 login text-light" for="email">email</label>
-                    <input class="login" name="email" type="text">
+            <form action="/user/login" method="post">
+                <div class="me-3 d-flex flex-column login">
+                    <div class="d-flex justify-content-end my-2">
+                        <label class="me-2 login text-light" for="email">email</label>
+                        <input class="login" name="email" type="text">
+                    </div>
+                    <div class="d-flex justify-content-end my-2">
+                        <label class="me-2 login text-light" for="password">password</label>
+                        <input class="login" name="password" type="password">
+                    </div>
+                    <button class="login">Login</button>
                 </div>
-                <div class="d-flex justify-content-end my-2">
-                    <label class="me-2 login text-light" for="password">password</label>
-                    <input class="login" name="password" type="password">
-                </div>
-                <button class="login">Login</button>
-            </div>
+            </form>
         </div>
-    </form>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <div class="col-2 bg-info">

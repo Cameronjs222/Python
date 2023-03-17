@@ -4,9 +4,7 @@ body {
 .register, .login {
     display: none;
 }
-.box {
-    height: 0px;
-}
+
 nav {
     display: flex;
     justify-content: space-center;
