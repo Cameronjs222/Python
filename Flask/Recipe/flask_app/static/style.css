@@ -10,5 +10,5 @@ body {
 nav {
     display: flex;
     justify-content: space-center;
-    flex
+    flex-direction: row;
 }
