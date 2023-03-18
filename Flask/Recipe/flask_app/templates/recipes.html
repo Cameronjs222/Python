@@ -11,7 +11,10 @@
 <body class="bg-dark">
     <div class=" bg-info bg-opacity-25 vh-100">
         <div class="vh-100 d-flex justify-content-center">
-            <div class="h-25 w-25 bg-info text-center mt-5"><h1>Hello world</h1></div>
+            <div class="h-25 w-25 bg-info text-center mt-5">
+                {% for i in range(0, all_recipes|length)%}
+                <p>{{all_recipes[i].title}}</p>
+                {%endfor%}
         </div>
     </div>
 </body>

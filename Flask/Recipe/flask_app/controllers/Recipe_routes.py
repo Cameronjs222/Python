@@ -12,6 +12,7 @@ def show_all_recipe():
         'id':session['user_id']
         }
     recipes = Recipes.get_all_with_user()
+    print("route print, should have user objects",recipes)
     return render_template('recipes.html', user = user_data, all_recipes = recipes)
 @app.route('/recipe/<int:recipe_user_id>')
 def get_one_recipe(recipe_user_id):

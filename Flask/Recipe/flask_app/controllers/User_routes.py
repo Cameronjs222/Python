@@ -15,7 +15,7 @@ def create_new_user():
     print(new_user)
     session['user_id'] = new_user
     print(session['user_id'])
-    return redirect('/post')
+    return redirect('/recipes')
 @app.route('/user/login', methods=['POST'])
 def validate_login():
     if not User.validation_login(request.form):
@@ -26,9 +26,9 @@ def validate_login():
     }
     returning_user = User.check_email(email_data)
     session['user_id'] = returning_user.id
-    return redirect('/post')
+    return redirect('/recipes')
 
 @app.route('/logout')
 def logout():
     session.clear()
-    
+    return redirect('/')
