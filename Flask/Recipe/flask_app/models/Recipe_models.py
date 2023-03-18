@@ -34,14 +34,38 @@ class Recipes:
             print("Should contain object in list",all_recipes)
         return all_recipes
     @classmethod
-    def create_recipe():
-        pass
+    def create_recipe(cls, form_data):
+        query = """
+        INSERT INTO recipes (users_id, title, description, under_30_min, instructions) VALUES (%(users_id)s,%(title)s,%(description)s,%(under_30_min)s,%(instructions)s)
+        """
+        data = {
+            'user_id':form_data['user_id'],
+            'title': form_data['title'],
+            'description':form_data['under_30_min'],
+            'under_30_min': form_data['under_30_min'],
+            'instructions': form_data['instructions']
+            }
+        return connectToMySQL(cls.my_db).query_db(query, data)
     @classmethod
-    def get_one_recipe():
-        pass
+    def get_one_recipe(cls, id):
+        query = "SELECT * FROM recipes WHERE id = %(id)s;"
+        data = {'id':id}
+        results = connectToMySQL(cls.my_db).query_db(query, data)
+        return cls(results[0])
     @classmethod
-    def update_user_recipe():
-        pass
+    def update_user_recipe(cls, form_data):
+        query = """
+        UPDATE recipes SET title = %(title)s description = %(description)s under_30_min = %(under_30_min)s instructions = %(instructions)s;
+        """
+        data = {
+            'title': form_data['title'],
+            'description': form_data['description'],
+            'under_30_min': form_data['under_30_min'],
+            'instructions': form_data['instructions']
+            }
+        return connectToMySQL(cls.my_db).query_db(query, data)
     @classmethod
-    def delete_user_recipe():
-        pass
+    def delete_user_recipe(cls, form_data):
+        query = "DELETE FROM recipes where (id=%(id)s)"
+        data = {'id' : form_data}
+        return connectToMySQL(cls.my_db).query_db(query, data)

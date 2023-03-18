@@ -46,7 +46,6 @@ class User:
             SELECT * FROM users
         '''
         results= connectToMySQL(cls.my_db).query_db(query)
-
         print(results)
         if results:
             users=[]
