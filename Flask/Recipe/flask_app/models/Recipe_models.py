@@ -14,9 +14,7 @@ class Recipes:
     def get_all_with_user(cls):
         query = "SELECT * FROM recipes JOIN users ON recipes.users_id = users.id"
         results = connectToMySQL(cls.my_db).query_db(query)
-        print(results)
         all_recipes = []
-        print("should contain empty list",all_recipes)
         for row in results:
             recipe = cls(row)
             recipe_author = {
@@ -31,7 +29,6 @@ class Recipes:
             author = User_model.User(recipe_author)
             recipe.creator = author
             all_recipes.append(recipe)
-            print("Should contain object in list",all_recipes)
         return all_recipes
     @classmethod
     def create_recipe(cls, form_data):
@@ -48,9 +45,10 @@ class Recipes:
         return connectToMySQL(cls.my_db).query_db(query, data)
     @classmethod
     def get_one_recipe(cls, id):
-        query = "SELECT * FROM recipes WHERE id = %(id)s;"
-        data = {'id':id}
-        results = connectToMySQL(cls.my_db).query_db(query, data)
+        query='''SELECT * FROM recipes WHERE recipes.id = %(id)s'''
+        id = {'id':id}
+        results= connectToMySQL(cls.my_db).query_db(query, id)
+        print(results)
         return cls(results[0])
     @classmethod
     def update_user_recipe(cls, form_data):

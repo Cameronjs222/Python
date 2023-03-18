@@ -12,33 +12,33 @@ def show_all_recipe():
         'id':session['user_id']
         }
     recipes = Recipes.get_all_with_user()
-    print("route print, should have user objects",recipes)
-    return render_template('recipes.html', user = user_data, all_recipes = recipes)
+    print(user_data['id'])
+    return render_template('recipes.html', user = User.get_one_user(user_data), all_recipes = recipes)
 @app.route('/recipe/<int:recipe_user_id>')
 def get_one_recipe(recipe_user_id):
     if 'user_id' not in session:
         return redirect('/')
-    id = {'id':recipe_user_id}
-    return render_template('recipe.html', one_recipe = Recipes.get_one_recipe(id))
+
+    return render_template('recipe.html', one_recipe = Recipes.get_one_recipe(recipe_user_id))
 @app.route('/recipe/new')
 def new_recipe():
     if 'user_id' not in session:
         return redirect('/')
     id = {'id':session['user_id']}
-    return render_template('new_recipe', user = User.get_one_user(id))
+    return render_template('new_recipe.html', user = User.get_one_user(id))
 @app.route('/recipe/create', methods = ['POST'])
 def create_new_recipe():
     if 'user_id' not in session:
         return redirect('/')
     new_recipe = Recipes.create_recipe(request.form)
     return redirect(f'/recipe/{new_recipe}')
-@app.route('/recipe/delete/<int:recipe_id>')
+@app.route('/delete/<int:recipe_id>')
 def delete_recipe(recipe_id):
     if 'user_id' not in session:
         return redirect('/')
-    id = {'id':recipe_id}
-    Recipes.delete_user_recipe(id)
-    return redirect('/Recipes')
+    # id = {'id':recipe_id}
+    Recipes.delete_user_recipe(recipe_id)
+    return redirect('/recipes')
 @app.route('/recipes/edit/<int:recipe_id>')
 def edit_recipe(recipe_id):
     if 'user_id' not in session:

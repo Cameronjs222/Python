@@ -30,14 +30,12 @@ class User:
             "password": pw_hash
         }
         results = connectToMySQL(cls.my_db).query_db(query, data)
-        print('these are the results', results)
         return results
     @classmethod
-    def get_one_user(cls, form_data):
+    def get_one_user(cls, data):
         query = """
         SELECT * FROM users WHERE users.id = %(id)s
         """
-        data ={'id':form_data}
         results = connectToMySQL(cls.my_db).query_db(query,data)
         return cls(results[0])
     @classmethod
@@ -46,7 +44,6 @@ class User:
             SELECT * FROM users
         '''
         results= connectToMySQL(cls.my_db).query_db(query)
-        print(results)
         if results:
             users=[]
             for user in results:
@@ -72,10 +69,8 @@ class User:
             WHERE users.email = %(email)s;
         '''
         results= connectToMySQL(cls.my_db).query_db(query, form_data)
-        print("check email results", results)
         if results:
             user = cls(results[0])
-            print('user object',user, user.id)
             return user
         else:
             return False
@@ -98,13 +93,11 @@ class User:
         is_valid = True
         data= { "email": form_data["email"]}
         valid_user = User.check_email(data)
-        print("valid user")
         if not valid_user:
             flash("Invalid credentials")
             is_valid = False
         if valid_user:
             if not bcrypt.check_password_hash(valid_user.password, form_data['password']):
-                print('user password', valid_user.password)
                 flash("Invalid credentials")
                 is_valid = False
         return is_valid
