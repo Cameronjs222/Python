@@ -18,8 +18,10 @@ def show_all_recipe():
 def get_one_recipe(recipe_user_id):
     if 'user_id' not in session:
         return redirect('/')
-
-    return render_template('recipe.html', one_recipe = Recipes.get_one_recipe(recipe_user_id))
+    user_data = {
+        'id':session['user_id']
+        }
+    return render_template('recipe.html',user = User.get_one_user(user_data), one_recipe = Recipes.get_one_recipe(recipe_user_id))
 @app.route('/recipe/new')
 def new_recipe():
     if 'user_id' not in session:
@@ -30,8 +32,10 @@ def new_recipe():
 def create_new_recipe():
     if 'user_id' not in session:
         return redirect('/')
-    new_recipe = Recipes.create_recipe(request.form)
-    return redirect(f'/recipe/{new_recipe}')
+    print(request.form)
+    id = {'id':session['user_id']}
+    Recipes.create_recipe(request.form, id)
+    return redirect('/recipes')
 @app.route('/delete/<int:recipe_id>')
 def delete_recipe(recipe_id):
     if 'user_id' not in session:

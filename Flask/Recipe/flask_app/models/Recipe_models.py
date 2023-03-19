@@ -15,41 +15,53 @@ class Recipes:
         query = "SELECT * FROM recipes JOIN users ON recipes.users_id = users.id"
         results = connectToMySQL(cls.my_db).query_db(query)
         all_recipes = []
-        for row in results:
-            recipe = cls(row)
+        for results[0] in results:
+            recipe = cls(results[0])
             recipe_author = {
-                'id':row['users.id'],
-                'first_name': row['first_name'],
-                'last_name': row['last_name'],
-                'email': row['email'],
-                'password': row['password'],
-                'created_at': row['created_at'],
-                'updated_at': row['updated_at']
+                'id':results[0]['users.id'],
+                'first_name': results[0]['first_name'],
+                'last_name': results[0]['last_name'],
+                'email': results[0]['email'],
+                'password': results[0]['password'],
+                'created_at': results[0]['created_at'],
+                'updated_at': results[0]['updated_at']
             }
             author = User_model.User(recipe_author)
             recipe.creator = author
             all_recipes.append(recipe)
         return all_recipes
     @classmethod
-    def create_recipe(cls, form_data):
+    def create_recipe(cls, form_data, id):
         query = """
         INSERT INTO recipes (users_id, title, description, under_30_min, instructions) VALUES (%(users_id)s,%(title)s,%(description)s,%(under_30_min)s,%(instructions)s)
         """
         data = {
-            'user_id':form_data['user_id'],
+            'users_id':id['id'],
             'title': form_data['title'],
-            'description':form_data['under_30_min'],
+            'description':form_data['description'],
             'under_30_min': form_data['under_30_min'],
             'instructions': form_data['instructions']
             }
+        
         return connectToMySQL(cls.my_db).query_db(query, data)
     @classmethod
     def get_one_recipe(cls, id):
-        query='''SELECT * FROM recipes WHERE recipes.id = %(id)s'''
+        query='''SELECT * FROM recipes JOIN users ON recipes.users_id = users.id WHERE recipes.id =  %(id)s'''
         id = {'id':id}
         results= connectToMySQL(cls.my_db).query_db(query, id)
         print(results)
-        return cls(results[0])
+        new_recipe = cls(results[0])
+        recipe_author = {
+                'id':results[0]['users.id'],
+                'first_name': results[0]['first_name'],
+                'last_name': results[0]['last_name'],
+                'email': results[0]['email'],
+                'password': results[0]['password'],
+                'created_at': results[0]['created_at'],
+                'updated_at': results[0]['updated_at']
+            }
+        new_recipe.creator = User_model.User(recipe_author)
+        return new_recipe
     @classmethod
     def update_user_recipe(cls, form_data):
         query = """
