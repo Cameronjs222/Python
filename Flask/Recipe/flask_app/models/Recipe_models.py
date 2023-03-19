@@ -65,7 +65,7 @@ class Recipes:
     @classmethod
     def update_user_recipe(cls, form_data):
         query = """
-        UPDATE recipes SET title = %(title)s description = %(description)s under_30_min = %(under_30_min)s instructions = %(instructions)s;
+        UPDATE recipes SET title = %(title)s, description = %(description)s, under_30_min = %(under_30_min)s, instructions = %(instructions)s;
         """
         data = {
             'title': form_data['title'],

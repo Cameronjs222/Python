@@ -43,21 +43,24 @@ def delete_recipe(recipe_id):
     # id = {'id':recipe_id}
     Recipes.delete_user_recipe(recipe_id)
     return redirect('/recipes')
-@app.route('/recipes/edit/<int:recipe_id>')
+@app.route('/recipe/edit/<int:recipe_id>')
 def edit_recipe(recipe_id):
     if 'user_id' not in session:
         return redirect('/')
-    id = {'id':recipe_id}
-    return render_template("edit.html", recipe = Recipes.get_one_recipe(id))
-@app.route('/recipe/update/<int:recipe_id>', methods = ['POST'])
+    id = {'id':session['user_id']}
+    print(id)
+    return render_template("edit.html", user = User.get_one_user(id), recipe = Recipes.get_one_recipe(recipe_id))
+@app.route('/recipe/update/<int:recipe_id>', methods = ['POST']) 
 def update_recipe(recipe_id):
     if 'user_id' not in session:
         return redirect('/')
     recipe = {
         'id': recipe_id,
         'user_id':session['user_id'],
+        'under_30_min': request.form['under_30_min'],
         'title':request.form['title'],
-        'description': request.form['description']
+        'description': request.form['description'],
+        'instructions': request.form['instructions']
     }
     Recipes.update_user_recipe(recipe)
     return redirect(f"/recipe/{recipe['id']}")
