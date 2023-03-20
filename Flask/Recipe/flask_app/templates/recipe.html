@@ -10,26 +10,42 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="bg-dark text-light">
-    <div class=" bg-info bg-opacity-25 vh-100">
+    <div class=" bg-info bg-opacity-25 h-100">
         <div class="w-50 text-center d-flex justify-content-center flex-column mx-auto">
             <div>
                 <h1>Welcome {{user.first_name}}</h1>
-                <p>Recipe created by {{one_recipe.creator.first_name}}  </p>
+                <td>Recipe created by {{one_recipe.creator.first_name}}  <td>
             </div>
             <div class="d-flex justify-content-between">
                 <a class="link-light" href="/recipes">Back to all recipes</a>
                 <a class="link-light" href="/logout">Logout</a>
             </div>
-            <div class="mt-5 bg-gradient d-flex justify-content-around">
+            <span class="align-self-start fs-1">{{one_recipe.title}} recipe</span>
+            <div class="mt-1 bg-gradient d-flex justify-content-around">
                 <div>
-                    <p>Title</p>
-                    <p>Description</p>
-                    <p>instructions</p>
-                </div>
-                <div>
-                    <p>{{one_recipe.description}}</p>
-                    <p>{{one_recipe.title}}</p>
-                    <p>{{one_recipe.instructions}}</p>
+                    <table class="table text-light">
+                        <tr>
+                            <td>can it be made in 30 minutes</td>
+                            {%if one_recipe.under_30_min == 0%}
+                                <td>No</td>
+                                {%endif%}
+                                {%if one_recipe.under_30_min == 1%}
+                                <td>
+                                    Yes
+                                    {%endif%}
+                                </td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{one_recipe.description}}</td>
+                        </tr>
+                        <tr>
+                            <td>instructions</td>
+                            <td>{{one_recipe.instructions}}</td>
+                        </tr>
+                    </div>
+                    <div>
+                    </table>
                 </div>
             </div>
         </div>

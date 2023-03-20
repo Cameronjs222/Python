@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
     <nav class="d-flex justify-content-between row bg-gradient">
         <div class="col-6 text-light"><h1>Welcome to recipes.com</h1></div>
         <div class="col-md-3 col-lg-2 align-self-center mt-2">
@@ -59,16 +60,15 @@
                 </div>
             </form>
         </div>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <div class="col-2 bg-info">
-        {% for message in messages %}
-        <p>{{message}}</p>
-        {% endfor %}
-    </div>
-    {% endif %}
-    {% endwith %}
-
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="text-start position-absolute top-0 start-0 mt-5">
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
     <script src="../static/script.js"></script>
 </body>
 

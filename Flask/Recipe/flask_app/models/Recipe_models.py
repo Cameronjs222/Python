@@ -1,5 +1,7 @@
 from flask_app.config.mySQLconnection import connectToMySQL
 from flask_app.models import User_model
+from flask import flash
+
 
 class Recipes:
     my_db = 'recipe'
@@ -79,3 +81,16 @@ class Recipes:
         query = "DELETE FROM recipes where (id=%(id)s)"
         data = {'id' : form_data}
         return connectToMySQL(cls.my_db).query_db(query, data)
+    @staticmethod
+    def validation(form_data):
+        is_valid = True
+        if len(form_data['title']) < 3:
+            flash('title must be at least 3 characters long')
+            is_valid = False
+        if len(form_data['description'])< 3:
+            flash('description must be at least 3 characters long')
+            is_valid = False
+        if len(form_data['instructions'])< 3:
+            flash('description must be at least 3 characters long')
+            is_valid = False
+        return is_valid

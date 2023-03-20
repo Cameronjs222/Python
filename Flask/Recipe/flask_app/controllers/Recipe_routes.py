@@ -30,6 +30,8 @@ def new_recipe():
     return render_template('new_recipe.html', user = User.get_one_user(id))
 @app.route('/recipe/create', methods = ['POST'])
 def create_new_recipe():
+    if not Recipes.validation(request.form):
+        return redirect('/recipe/create')
     if 'user_id' not in session:
         return redirect('/')
     print(request.form)
@@ -52,6 +54,8 @@ def edit_recipe(recipe_id):
     return render_template("edit.html", user = User.get_one_user(id), recipe = Recipes.get_one_recipe(recipe_id))
 @app.route('/recipe/update/<int:recipe_id>', methods = ['POST']) 
 def update_recipe(recipe_id):
+    if not Recipes.validation(request.form):
+        return redirect(f'/recipe/edit/{recipe_id}')
     if 'user_id' not in session:
         return redirect('/')
     recipe = {

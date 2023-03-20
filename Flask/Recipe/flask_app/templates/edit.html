@@ -12,8 +12,16 @@
 </head>
 
 <body class="bg-dark text-light">
-    <p>{{recipe}}</p>
-    <div class=" bg-info bg-opacity-25 vh-100">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="text-center">
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class=" bg-info bg-opacity-25 h-100">
         <form action="/recipe/update/{{recipe.id}}" method="post">
             
             <div class="w-50 text-center d-flex justify-content-center flex-column mx-auto">
