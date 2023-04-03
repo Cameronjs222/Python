@@ -1,27 +1,36 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        if not strs or "" in strs or len(strs) == 1 and len(strs[0]) == 1:
-            return "" if "" in strs else strs[0]
-        
         pre_fixes = {}
         common_letters = {}
         greatest = {}
-        count = 0
+        # count = 0
         index = 0
         for i in range(0, len(strs)):
             pre_fixes[i] = []
             common_letters[i] = []
+            greatest[i] = strs[i]
+            print("pre_fixes[i]", pre_fixes[i], i)
+            print("commone_letters[i]", common_letters[i], i)
             for j in range(0, len(strs[i])):
                 pre_fixes[i].append(strs[i][j])
+                print("pre_fixes[i].append", pre_fixes[i] )
                 
                 if i > 0:
+                    print(True)
                     if strs[i-1][j] == pre_fixes[i][j]:
+                        print(True)
                         common_letters[i].append(strs[i][j])
-                        count += 1
-                    else: 
+                        # count += 1
+                        index = i
                         greatest[i] = common_letters[i]
-                        count = 0
+                    else: 
+                        print(True)
+                        greatest[i] = common_letters[i]
+                        # count = 0
                         index = i
                         break
-        common_prefix = "".join(greatest[index])
+        print(greatest)
+        if len(greatest) > 0:
+            common_prefix = "".join(greatest[index])
+        else: common_prefix = ""
         return common_prefix
