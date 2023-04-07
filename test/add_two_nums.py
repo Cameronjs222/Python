@@ -35,11 +35,20 @@
 #         else: common_prefix = ""
 #         return common_prefix
 class Solustion:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
+    def longestCommonPrefix(self, strs) -> str:
         l = list(zip(*strs))
+        print(l)
+        # l breaks down all of the string fed through the function and orderes them by letter postion.
+        # the stings flower, flow, and string are rearagained to [('f', 'f', 'f'), ('l', 'l', 'l'), ('o', 'o', 'i'), ('w', 'w', 'g')].
+        # So we can now go through each item and if they are all the same, the can be added to a prefix list.
         prefix = ""
         for i in l:
-            if len(set(i)) == 1:
+            if len(set(i)) == 1: #set breacks down each index into the individual letters. (f,f,f) becomes (f) (o,o,i) becomes (o,i). So any indes with a length of exactly 1 is a common prefix!
                 prefix += i[0]
             else: break
         return prefix
+    
+strs = ["test", "testimony", "techinal"]
+solution = Solustion()
+common_prefix = solution.longestCommonPrefix(strs)
+print(common_prefix)
